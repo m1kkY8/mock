@@ -1,0 +1,5 @@
+services:
+  mock:
+    image: m1kky8/mock:prod
+    ports:
+      - "3000:3000"
