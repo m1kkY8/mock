@@ -1,0 +1,27 @@
+name: Docker Build
+descripton: Build and push image to docker repo
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Login
+        uses: docker/login-action@v3.3.0
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3.6.1
+
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v6.7.0
+        with:
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/mock:prod
