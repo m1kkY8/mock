@@ -1,5 +1,4 @@
 name: Docker Build
-descripton: Build and push image to docker repo
 
 on:
   push:
